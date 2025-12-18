@@ -7,7 +7,7 @@
             <h2 class="text-lg font-semibold text-slate-900">Manage activities</h2>
         </div>
         <a href="{{ route('admin.activities.create') }}" class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-emerald-600 text-white font-semibold hover:bg-emerald-700">
-            <span class="text-lg leading-none">＋</span>
+            <span class="text-lg leading-none">+</span>
             <span>New Activity</span>
         </a>
     </div>
@@ -24,13 +24,15 @@
                         <div class="flex items-start justify-between gap-3">
                             <div>
                                 <div class="text-base font-semibold text-slate-900">{{ $activity->title }}</div>
-                                <div class="text-xs text-slate-500">{{ $activity->event_date?->format('M j, Y') }} • {{ $activity->location }}</div>
+                                <div class="text-xs text-slate-500">{{ $activity->event_date?->format('M j, Y') }} | {{ $activity->location }}</div>
                                 @if($activity->description)
                                     <p class="text-sm text-slate-600 mt-2">{{ $activity->description }}</p>
                                 @endif
                             </div>
-                            <div class="flex gap-2">
-                                <a href="{{ route('admin.attendance.show', $activity) }}" class="text-xs px-3 py-2 rounded-lg bg-slate-900 text-white font-semibold hover:bg-slate-800">Attendance</a>
+                            <div class="flex flex-wrap gap-2 items-center justify-end">
+                                <span class="text-xs px-3 py-2 rounded-lg border border-slate-200 bg-slate-100 text-slate-500 font-semibold" title="Attendance opens after the event date">
+                                    Attendance not available yet
+                                </span>
                                 <a href="{{ route('admin.activities.edit', $activity) }}" class="text-xs px-3 py-2 rounded-lg border border-slate-200 font-semibold text-slate-800 hover:bg-slate-50">Edit</a>
                                 <form method="POST" action="{{ route('admin.activities.destroy', $activity) }}" onsubmit="return confirm('Delete this activity?');">
                                     @csrf
@@ -57,7 +59,7 @@
                         <div class="flex items-start justify-between gap-3">
                             <div>
                                 <div class="text-base font-semibold text-slate-900">{{ $activity->title }}</div>
-                                <div class="text-xs text-slate-500">{{ $activity->event_date?->format('M j, Y') }} • {{ $activity->location }}</div>
+                                <div class="text-xs text-slate-500">{{ $activity->event_date?->format('M j, Y') }} | {{ $activity->location }}</div>
                                 @if($activity->description)
                                     <p class="text-sm text-slate-600 mt-2">{{ $activity->description }}</p>
                                 @endif

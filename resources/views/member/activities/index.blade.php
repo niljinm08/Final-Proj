@@ -23,12 +23,9 @@
                                     <p class="text-sm text-slate-600 mt-2">{{ $activity->description }}</p>
                                 @endif
                             </div>
-                            @php $status = $attendanceMap[$activity->id] ?? null; @endphp
-                            @if($status)
-                                <span class="px-3 py-1 rounded-full text-xs font-semibold {{ $status === 'present' ? 'bg-emerald-100 text-emerald-700' : 'bg-amber-100 text-amber-700' }}">
-                                    {{ ucfirst($status) }}
-                                </span>
-                            @endif
+                            <span class="px-3 py-1 rounded-full text-xs font-semibold bg-slate-100 text-slate-500">
+                                Attendance not available yet
+                            </span>
                         </div>
                     </div>
                 @empty
